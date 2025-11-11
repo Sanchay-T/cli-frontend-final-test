@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>Dashboard</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item active">
+                    <a href="#home">
+                        <span class="nav-icon">🏠</span>
+                        <span class="nav-text">Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#profile">
+                        <span class="nav-icon">👤</span>
+                        <span class="nav-text">Profile</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#analytics">
+                        <span class="nav-icon">📊</span>
+                        <span class="nav-text">Analytics</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#settings">
+                        <span class="nav-icon">⚙️</span>
+                        <span class="nav-text">Settings</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#messages">
+                        <span class="nav-icon">💬</span>
+                        <span class="nav-text">Messages</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <button id="logoutBtn" class="btn-logout">
+                    <span class="nav-icon">🚪</span>
+                    <span class="nav-text">Logout</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>Welcome to Your Dashboard</h1>
+                <div class="user-info">
+                    <span id="userEmail">User</span>
+                </div>
+            </header>
+            <div class="content-area">
+                <div class="cards-grid">
+                    <div class="card">
+                        <h3>Total Users</h3>
+                        <p class="card-value">1,234</p>
+                    </div>
+                    <div class="card">
+                        <h3>Revenue</h3>
+                        <p class="card-value">$45,678</p>
+                    </div>
+                    <div class="card">
+                        <h3>Projects</h3>
+                        <p class="card-value">89</p>
+                    </div>
+                    <div class="card">
+                        <h3>Tasks</h3>
+                        <p class="card-value">456</p>
+                    </div>
+                </div>
+                <div class="welcome-message">
+                    <h2>Getting Started</h2>
+                    <p>Welcome to your dashboard! Navigate using the sidebar to explore different sections.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="dashboard.js"></script>
+</body>
+</html>
