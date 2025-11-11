@@ -38,15 +38,37 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Logout functionality
+    // Logout functionality with confirmation modal
     const logoutBtn = document.getElementById('logoutBtn');
+    const logoutModal = document.getElementById('logoutModal');
+    const confirmLogoutBtn = document.getElementById('confirmLogout');
+    const cancelLogoutBtn = document.getElementById('cancelLogout');
+
+    // Show modal when logout button is clicked
     logoutBtn.addEventListener('click', function() {
+        logoutModal.classList.add('show');
+    });
+
+    // Handle logout confirmation
+    confirmLogoutBtn.addEventListener('click', function() {
         // Clear login state
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('userEmail');
 
         // Redirect to login page
         window.location.href = 'login.html';
+    });
+
+    // Handle cancel button
+    cancelLogoutBtn.addEventListener('click', function() {
+        logoutModal.classList.remove('show');
+    });
+
+    // Close modal when clicking outside of it
+    window.addEventListener('click', function(event) {
+        if (event.target === logoutModal) {
+            logoutModal.classList.remove('show');
+        }
     });
 
     // Function to update content area based on selected page
