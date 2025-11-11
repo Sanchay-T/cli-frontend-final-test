@@ -1,2 +1,4 @@
 - [x] Initialise ob1 run
 - [ ] Initialize Cursor Cloud Agent
+- [x] Changes pulled successfully
+- [x] Fallback summary file generated
