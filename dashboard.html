@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Sample App</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dashboard-body">
+  <div class="layout">
+    <aside class="sidebar" aria-label="Primary navigation">
+      <div class="sidebar__header">
+        <span class="sidebar__title">Sample App</span>
+      </div>
+      <nav class="sidebar__nav">
+        <a href="#overview" class="nav-link is-active">Overview</a>
+        <a href="#reports" class="nav-link">Reports</a>
+        <a href="#settings" class="nav-link">Settings</a>
+      </nav>
+      <div class="sidebar__footer">
+        <div class="user-chip">
+          <span class="user-avatar" aria-hidden="true">👤</span>
+          <div class="user-meta">
+            <span class="user-name">Signed in as</span>
+            <span class="user-email" id="user-email">Guest</span>
+          </div>
+        </div>
+        <button type="button" id="logout-button" class="secondary-button">Log Out</button>
+      </div>
+    </aside>
+    <main class="content">
+      <header class="content__header" id="overview">
+        <h1>Overview</h1>
+        <p class="content__subtitle">Track your metrics and stay on top of your tasks.</p>
+      </header>
+      <section class="content__grid">
+        <article class="card">
+          <h2>Total Sales</h2>
+          <p class="card__metric">$24,300</p>
+          <p class="card__detail">Up 12% compared to last month</p>
+        </article>
+        <article class="card">
+          <h2>Active Users</h2>
+          <p class="card__metric">1,284</p>
+          <p class="card__detail">Steady growth week over week</p>
+        </article>
+        <article class="card">
+          <h2>Open Tickets</h2>
+          <p class="card__metric">37</p>
+          <p class="card__detail">Respond within 2 business days</p>
+        </article>
+      </section>
+    </main>
+  </div>
+  <script src="dashboard.js" defer></script>
+</body>
+</html>
