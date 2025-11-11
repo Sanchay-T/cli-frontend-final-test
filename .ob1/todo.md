@@ -1,3 +1,6 @@
 - [x] Initialise ob1 run
 - [ ] Initialize Claude Agent SDK
 - [x] Claude Agent SDK execution completed
+- [x] Initialise ob1 run
+- [ ] Initialize Codex Agent SDK
+- [x] Codex Agent SDK execution completed

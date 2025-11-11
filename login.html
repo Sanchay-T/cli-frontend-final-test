@@ -37,10 +37,41 @@
 
                 <div class="error-message" id="errorMessage"></div>
 
+                <div class="form-helper">
+                    <button type="button" class="link-button" id="forgotPasswordTrigger">Forgot password?</button>
+                </div>
+
                 <button type="submit" class="submit-btn">Login</button>
             </form>
 
             <p class="footer-text">Don't have an account? <a href="#">Sign up</a></p>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="forgotPasswordModal" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="forgotPasswordTitle">
+            <button type="button" class="modal-close" id="forgotPasswordClose" aria-label="Close reset password dialog">&times;</button>
+            <h2 id="forgotPasswordTitle">Reset Password</h2>
+            <p class="modal-subtitle">Enter your account email and we will send a reset link.</p>
+            <form id="forgotPasswordForm" novalidate>
+                <div class="form-group">
+                    <label for="forgotPasswordEmail">Email</label>
+                    <input
+                        type="email"
+                        id="forgotPasswordEmail"
+                        name="forgotPasswordEmail"
+                        placeholder="you@example.com"
+                        required
+                    >
+                </div>
+                <div class="error-message" id="forgotPasswordError"></div>
+                <button type="submit" class="submit-btn" id="forgotPasswordSubmit">Send Reset Link</button>
+            </form>
+            <div class="success-state" id="forgotPasswordSuccess" hidden>
+                <div class="success-icon"></div>
+                <h3>Check your inbox!</h3>
+                <p>We sent you instructions to reset your password.</p>
+            </div>
         </div>
     </div>
 
