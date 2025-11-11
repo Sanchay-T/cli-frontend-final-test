@@ -37,10 +37,53 @@
 
                 <div class="error-message" id="errorMessage"></div>
 
+                <div class="form-footer">
+                    <a href="#" class="forgot-password-link" id="forgotPasswordLink">Forgot Password?</a>
+                </div>
+
                 <button type="submit" class="submit-btn">Login</button>
             </form>
 
             <p class="footer-text">Don't have an account? <a href="#">Sign up</a></p>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal" id="forgotPasswordModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <h2>Reset Password</h2>
+            <p class="modal-subtitle">Enter your email address and we'll send you a link to reset your password.</p>
+
+            <form id="forgotPasswordForm">
+                <div class="form-group">
+                    <label for="resetEmail">Email Address</label>
+                    <input
+                        type="email"
+                        id="resetEmail"
+                        name="resetEmail"
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+
+                <div class="error-message" id="modalErrorMessage"></div>
+
+                <button type="submit" class="submit-btn">Send Reset Link</button>
+            </form>
+
+            <!-- Success Animation Container -->
+            <div class="success-container" id="successContainer">
+                <div class="success-animation">
+                    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                        <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                </div>
+                <h3>Check Your Email!</h3>
+                <p>We've sent a password reset link to your email address.</p>
+                <button class="close-success-btn" id="closeSuccessBtn">Close</button>
+            </div>
         </div>
     </div>
 
