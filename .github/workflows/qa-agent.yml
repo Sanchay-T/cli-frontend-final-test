@@ -45,6 +45,11 @@ jobs:
           npm run build
           npm link
 
+      - name: Configure git
+        run: |
+          git config --global user.email "qa-agent@github.com"
+          git config --global user.name "QA Agent"
+
       - name: Run QA Agent
         id: qa-agent
         env:
@@ -68,7 +73,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: qa-test-videos-pr-${{ github.event.pull_request.number }}
+          name: qa-test-videos-${{ github.event.pull_request.number || github.run_id }}
           path: |
             work/qa/*/test-results/**/*.webm
             work/qa/*/test-results/**/*.mp4
@@ -81,7 +86,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: qa-test-screenshots-pr-${{ github.event.pull_request.number }}
+          name: qa-test-screenshots-${{ github.event.pull_request.number || github.run_id }}
           path: |
             work/qa/*/test-results/**/*.png
             work/qa/*/test-results/**/*.jpg
@@ -94,7 +99,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: qa-playwright-report-pr-${{ github.event.pull_request.number }}
+          name: qa-playwright-report-${{ github.event.pull_request.number || github.run_id }}
           path: |
             work/qa/*/playwright-report/
             playwright-report/
@@ -105,7 +110,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: qa-test-files-pr-${{ github.event.pull_request.number }}
+          name: qa-test-files-${{ github.event.pull_request.number || github.run_id }}
           path: |
             work/qa/*/tests/**/*.spec.ts
             work/qa/*/tests/**/*.spec.js
@@ -118,14 +123,14 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: qa-agent-logs-pr-${{ github.event.pull_request.number }}
+          name: qa-agent-logs-${{ github.event.pull_request.number || github.run_id }}
           path: |
             runs/*/agents/qa/**/*
           if-no-files-found: ignore
           retention-days: 30
 
       - name: Post QA results to PR
-        if: always()
+        if: always() && github.event_name == 'pull_request'
         uses: actions/github-script@v7
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
@@ -135,6 +140,13 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const prNumber = process.env.PR_NUMBER;
+
+            // Skip if no PR number (shouldn't happen with the if condition, but be safe)
+            if (!prNumber) {
+              console.log('No PR number available, skipping comment');
+              return;
+            }
+
             const runId = process.env.RUN_ID;
             const repo = process.env.REPO_NAME.split('/');
             const owner = repo[0];
@@ -170,12 +182,18 @@ jobs:
             comment += `---\n`;
             comment += `*Automated QA review by [ob1 QA Agent](https://github.com/Sanchay-T/cli-agent)*`;
 
-            await github.rest.issues.createComment({
-              owner,
-              repo: repoName,
-              issue_number: prNumber,
-              body: comment
-            });
+            try {
+              await github.rest.issues.createComment({
+                owner,
+                repo: repoName,
+                issue_number: prNumber,
+                body: comment
+              });
+              console.log('Successfully posted comment to PR #' + prNumber);
+            } catch (error) {
+              console.error('Failed to post comment:', error.message);
+              // Don't fail the workflow if commenting fails
+            }
 
       - name: Summary
         if: always()
